@@ -16,7 +16,7 @@ class JuliusReceiver:
                 rate.sleep()
 
         rospy.on_shutdown(self.shutdown)
-        map(rospy.wait_for_service, ['/timed_momtion', '/motor_on', '/motor_off'])
+        map(rospy.wait_for_service, ['/timed_motion', '/motor_on', '/motor_off'])
         rospy.ServiceProxy('/motor_on', Trigger).call()
         self.tm = rospy.ServiceProxy('/timed_motion', TimedMotion)
 
@@ -43,7 +43,7 @@ class JuliusReceiver:
 
         if   "左" in line:   self.tm(-400, 400, 300)
         elif "右" in line:   self.tm(400, -400, 300)
-        elif "前" in line:   self.tm(400, 400, 3000)
+        elif "前" in line:   self.tm(400, 400, 1500)
         elif "後" in line:   self.tm(-400, -400, 1500)
 
 if __name__ == '__main__':
